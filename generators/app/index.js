@@ -1,6 +1,7 @@
 'use strict';
 
 const fs = require('fs-extra');
+var path = require('path');
 const Generator = require('yeoman-generator');
 const chalk = require('chalk');
 const yosay = require('yosay');
@@ -34,10 +35,24 @@ module.exports = class extends Generator {
   }
 
   writing() {
-    fs.copy(this.sourceRoot(), this.destinationRoot(), (error) => {
-      if (error) {
-        console.log(error);
+    this.fs.copyTpl(
+      this.templatePath('pom.xml'),
+      this.destinationPath('pom.xml'),
+      {
+        groupId: this.props.groupId,
+        artifactId: this.props.artifactId,
+        version: this.props.version
       }
-    })
+    )
+
+    const folders = ['src/main/java', 'src/main/resources', 'src/test/java']
+
+    for (let i = 0; i < folders.length; i++) {
+      fs.ensureDir(path.join(this.destinationRoot(), folders[i]), (error) => {
+        if (error) {
+          console.log(error);
+        }
+      })
+    }
   }
 };
