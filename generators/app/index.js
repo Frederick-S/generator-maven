@@ -1,7 +1,7 @@
 'use strict';
 
 const fs = require('fs-extra');
-var path = require('path');
+const path = require('path');
 const Generator = require('yeoman-generator');
 const chalk = require('chalk');
 const yosay = require('yosay');
