@@ -6,14 +6,12 @@
   "author": {
     "name": "Frederick-S",
     "email": "mao_xiaodan@hotmail.com",
-    "url": ""
   },
   "files": [
     "generators"
   ],
   "main": "generators/index.js",
   "keywords": [
-    "",
     "yeoman-generator"
   ],
   "devDependencies": {
